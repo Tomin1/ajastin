@@ -48,24 +48,29 @@
 #define LED_ON (1 << PB4)
 
 // Other
-#define DELAY 100
+#define DELAY 200
 #define TIME 60
 #define MULTIPLIER 10
 #define MAXIMUM 15
 
 volatile unsigned char counter;
 volatile unsigned int seconds;
+volatile unsigned char half;
 
 ISR(TIMER0_COMPA_vect)
 {
     if (++seconds > TIME * MULTIPLIER) {
         counter++;
         seconds = 0;
+        half = 0;
+    } else if (seconds > TIME/2 * MULTIPLIER) {
+        half = 1;
     }
 }
 
 int main(void)
 {
+    unsigned char toggle = 0;
     { // Setup
         cli();
         PORTB = PORTB_VALUE;
@@ -76,6 +81,7 @@ int main(void)
         TIMSK = TIMSK_VALUE;
         counter = 0;
         seconds = 0;
+        half = 0;
         PORTB = LED_ON;
         sei();
     }
@@ -83,7 +89,15 @@ int main(void)
     while (counter < MAXIMUM)
     {
         _delay_ms(DELAY);
-        PORTB = LED_ON | counter;
+        if (half) {
+            if (toggle)
+                PORTB = LED_ON | (counter+1);
+            else
+                PORTB = LED_ON | counter;
+            toggle = !toggle;
+        } else {
+            PORTB = LED_ON | counter;
+        }
     }
     PORTB &= ~LED_ON;
     return 0;
