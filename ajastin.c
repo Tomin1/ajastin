@@ -54,16 +54,16 @@
 #define MAXIMUM 15
 
 volatile unsigned char counter;
-volatile unsigned int seconds;
+volatile unsigned int time;
 volatile unsigned char half;
 
 ISR(TIMER0_COMPA_vect)
 {
-    if (++seconds > TIME * MULTIPLIER) {
+    if (++time > TIME * MULTIPLIER) {
         counter++;
-        seconds = 0;
+        time = 0;
         half = 0;
-    } else if (seconds > TIME/2 * MULTIPLIER) {
+    } else if (time > TIME/2 * MULTIPLIER) {
         half = 1;
     }
 }
@@ -80,7 +80,7 @@ int main(void)
         OCR0A = OCR0A_VALUE;
         TIMSK = TIMSK_VALUE;
         counter = 0;
-        seconds = 0;
+        time = 0;
         half = 0;
         PORTB = LED_ON;
         sei();
