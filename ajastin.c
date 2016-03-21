@@ -34,6 +34,7 @@
 #include <avr/cpufunc.h>
 #include <avr/interrupt.h>
 #include <avr/io.h>
+#include <avr/sleep.h>
 #include <util/delay.h>
 
 // Register definitions
@@ -48,7 +49,6 @@
 #define LED_ON (1 << PB4)
 
 // Other
-#define DELAY 200
 #define TIME 60
 #define MULTIPLIER 10
 #define MAXIMUM 15
@@ -73,6 +73,7 @@ int main(void)
     unsigned char toggle = 0;
     { // Setup
         cli();
+        set_sleep_mode(SLEEP_MODE_IDLE);
         PORTB = PORTB_VALUE;
         DDRB = DDRB_VALUE;
         TCCR0A = TCCR0A_VALUE;
@@ -88,7 +89,6 @@ int main(void)
     // Display
     while (counter < MAXIMUM)
     {
-        _delay_ms(DELAY);
         if (half) {
             if (toggle)
                 PORTB = LED_ON | (counter+1);
@@ -98,6 +98,7 @@ int main(void)
         } else {
             PORTB = LED_ON | counter;
         }
+        sleep_mode();
     }
     PORTB &= ~LED_ON;
     return 0;
