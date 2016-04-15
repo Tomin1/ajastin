@@ -32,10 +32,9 @@
  *
  * The code uses charlieplexing to drive 5 leds. Therefore every led
  * will be lit FREQUENCY times per second and their duty cycle is
- * 1/NUMBER_OF_LEDS.
- *
- * Piezo is driven by TIMER0_COMPA vector so it runs approximately at
- * the frequency of (FREQUENCY * NUMBER_OF_LEDS).
+ * 1/NUMBER_OF_LEDS. The piezo is DC so it will generate whatever
+ * frequency it happens to have and it beeps a half second beep once
+ * every second.
  *
  * Usage:
  * Power on. Set time by pressing the button until the time you want is
@@ -85,6 +84,7 @@ const unsigned char LEDS_INPUT[] = { // DDRB values
 volatile uint8_t counter;
 volatile uint8_t counter_max;
 volatile uint8_t leds;
+volatile uint8_t piezo;
 volatile uint8_t stopped;
 // stopped is the state of this program:
 // 0 = timer running,
@@ -98,19 +98,11 @@ ISR(TIMER0_COMPA_vect)
 {
     static uint8_t multiplier = 0;
     static uint8_t time = 0;
-    static uint8_t piezo = 0;
     uint8_t state = (multiplier % NUMBER_OF_LEDS);
-    PORTB = PORTB_NULL; // Drive the leds
+    PORTB = PORTB_NULL | piezo; // Drive the leds
     if (leds & (1 << state)) {
         DDRB = LEDS_INPUT[state];
-        PORTB = LEDS_HIGH[state];
-    }
-    if (stopped == 4 && piezo | 1) { // Run the buzzer
-        piezo ^= 2;
-        if (piezo | 2)
-            PORTB |= PIEZO;
-        else
-            PORTB &= ~PIEZO;
+        PORTB = LEDS_HIGH[state] | piezo;
     }
     if (multiplier >= FREQUENCY*NUMBER_OF_LEDS) {
         switch (stopped) {
@@ -130,14 +122,17 @@ ISR(TIMER0_COMPA_vect)
                 time = 0;
                 stopped = 1;
                 break;
-            case 4: // Start or stop piezo
-                piezo ^= 1;
+            case 4: // Begin piezo beep
+                piezo = PIEZO;
                 break;
             default:
                 break;
         }
         multiplier = 0;
     } else {
+        if (stopped == 4 && multiplier >= FREQUENCY*NUMBER_OF_LEDS/2) {
+            piezo = 0; // End piezo beep
+        }
         multiplier++;
     }
     OCR0A ^= 2; // Switch between values 61 and 62
@@ -173,13 +168,16 @@ int main(void)
         PORTB = PORTB_NULL;
         counter = leds = 0;
         counter_max = MAXIMUM;
+        piezo = 0;
         stopped = 1;
         sei();
     }
     { // Set up the counter and start
         while (stopped < 3)
+        {
             leds = counter_max;
             sleep_mode();
+        }
         leds = LED_ON;
     }
     { // Prepare for the timer
@@ -208,6 +206,9 @@ int main(void)
         TCCR0A &= ~((1 << COM0B1) | (1 << COM0B0)); // Stop yelling!
     }
     { // Timer finished, sleep forever!
+        cli();
+        TIMSK = 0;
+        PORTB = 0; // Everything off
         set_sleep_mode(SLEEP_MODE_PWR_DOWN);
         sleep_mode();
     }
