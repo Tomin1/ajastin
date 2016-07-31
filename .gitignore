@@ -2,3 +2,5 @@
 *.map
 *.swp
 *.swo
+binary/*.bak
+binary/*-cache.lib

@@ -1,0 +1,414 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Ajastin"
+Date "2016-04-15"
+Rev "1"
+Comp ""
+Comment1 "Binary timer"
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L LED D1
+U 1 1 57110DBA
+P 4200 3600
+F 0 "D1" H 4200 3700 50  0000 C CNN
+F 1 "LED" H 4200 3500 50  0000 C CNN
+F 2 "LEDs:LED-5MM" H 4200 3600 50  0001 C CNN
+F 3 "" H 4200 3600 50  0000 C CNN
+	1    4200 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L ATTINY85-P IC1
+U 1 1 57110E55
+P 7250 3600
+F 0 "IC1" H 6100 4000 50  0000 C CNN
+F 1 "ATTINY85-P" H 8250 3200 50  0000 C CNN
+F 2 "DIP8" H 8250 3600 50  0000 C CIN
+F 3 "" H 7250 3600 50  0000 C CNN
+	1    7250 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR01
+U 1 1 57111148
+P 8650 3850
+F 0 "#PWR01" H 8650 3600 50  0001 C CNN
+F 1 "GND" H 8650 3700 50  0000 C CNN
+F 2 "" H 8650 3850 50  0000 C CNN
+F 3 "" H 8650 3850 50  0000 C CNN
+	1    8650 3850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L VCC #PWR02
+U 1 1 57111162
+P 8650 3350
+F 0 "#PWR02" H 8650 3200 50  0001 C CNN
+F 1 "VCC" H 8650 3500 50  0000 C CNN
+F 2 "" H 8650 3350 50  0000 C CNN
+F 3 "" H 8650 3350 50  0000 C CNN
+	1    8650 3350
+	0    1    1    0   
+$EndComp
+$Comp
+L Battery BT1
+U 1 1 57111199
+P 6700 4850
+F 0 "BT1" H 6800 4900 50  0000 L CNN
+F 1 "2×AAA" H 6800 4800 50  0000 L CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02" V 6700 4890 50  0001 C CNN
+F 3 "" V 6700 4890 50  0000 C CNN
+	1    6700 4850
+	-1   0    0    -1  
+$EndComp
+$Comp
+L VCC #PWR03
+U 1 1 5711130B
+P 6700 4650
+F 0 "#PWR03" H 6700 4500 50  0001 C CNN
+F 1 "VCC" H 6700 4800 50  0000 C CNN
+F 2 "" H 6700 4650 50  0000 C CNN
+F 3 "" H 6700 4650 50  0000 C CNN
+	1    6700 4650
+	-1   0    0    -1  
+$EndComp
+$Comp
+L GND #PWR04
+U 1 1 57111325
+P 6700 5050
+F 0 "#PWR04" H 6700 4800 50  0001 C CNN
+F 1 "GND" H 6700 4900 50  0000 C CNN
+F 2 "" H 6700 5050 50  0000 C CNN
+F 3 "" H 6700 5050 50  0000 C CNN
+	1    6700 5050
+	-1   0    0    -1  
+$EndComp
+$Comp
+L LED D2
+U 1 1 5711136D
+P 4200 4000
+F 0 "D2" H 4200 4100 50  0000 C CNN
+F 1 "LED" H 4200 3900 50  0000 C CNN
+F 2 "LEDs:LED-5MM" H 4200 4000 50  0001 C CNN
+F 3 "" H 4200 4000 50  0000 C CNN
+	1    4200 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D3
+U 1 1 571113C7
+P 4200 4400
+F 0 "D3" H 4200 4500 50  0000 C CNN
+F 1 "LED" H 4200 4300 50  0000 C CNN
+F 2 "LEDs:LED-5MM" H 4200 4400 50  0001 C CNN
+F 3 "" H 4200 4400 50  0000 C CNN
+	1    4200 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D4
+U 1 1 571113F6
+P 4200 4800
+F 0 "D4" H 4200 4900 50  0000 C CNN
+F 1 "LED" H 4200 4700 50  0000 C CNN
+F 2 "LEDs:LED-5MM" H 4200 4800 50  0001 C CNN
+F 3 "" H 4200 4800 50  0000 C CNN
+	1    4200 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D5
+U 1 1 57111428
+P 4200 5350
+F 0 "D5" H 4200 5450 50  0000 C CNN
+F 1 "LED" H 4200 5250 50  0000 C CNN
+F 2 "LEDs:LED-5MM" H 4200 5350 50  0001 C CNN
+F 3 "" H 4200 5350 50  0000 C CNN
+	1    4200 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 57111890
+P 4600 3600
+F 0 "R1" V 4680 3600 50  0000 C CNN
+F 1 "R" V 4600 3600 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 4530 3600 50  0001 C CNN
+F 3 "" H 4600 3600 50  0000 C CNN
+	1    4600 3600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R2
+U 1 1 57111939
+P 4600 4000
+F 0 "R2" V 4680 4000 50  0000 C CNN
+F 1 "R" V 4600 4000 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 4530 4000 50  0001 C CNN
+F 3 "" H 4600 4000 50  0000 C CNN
+	1    4600 4000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R3
+U 1 1 57111974
+P 4600 4400
+F 0 "R3" V 4680 4400 50  0000 C CNN
+F 1 "R" V 4600 4400 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 4530 4400 50  0001 C CNN
+F 3 "" H 4600 4400 50  0000 C CNN
+	1    4600 4400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R4
+U 1 1 571119C4
+P 4600 4800
+F 0 "R4" V 4680 4800 50  0000 C CNN
+F 1 "R" V 4600 4800 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 4530 4800 50  0001 C CNN
+F 3 "" H 4600 4800 50  0000 C CNN
+	1    4600 4800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R5
+U 1 1 57111A03
+P 4600 5350
+F 0 "R5" V 4680 5350 50  0000 C CNN
+F 1 "R" V 4600 5350 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 4530 5350 50  0001 C CNN
+F 3 "" H 4600 5350 50  0000 C CNN
+	1    4600 5350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L SW_PUSH SW1
+U 1 1 57111BB1
+P 4450 2850
+F 0 "SW1" H 4600 2960 50  0000 C CNN
+F 1 "SW_PUSH" H 4450 2770 50  0000 C CNN
+F 2 "Buttons_Switches_ThroughHole:SW_PUSH_SMALL" H 4450 2850 50  0001 C CNN
+F 3 "" H 4450 2850 50  0000 C CNN
+	1    4450 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_PUSH SW2
+U 1 1 57111C2D
+P 4450 3150
+F 0 "SW2" H 4600 3260 50  0000 C CNN
+F 1 "SW_PUSH" H 4450 3070 50  0000 C CNN
+F 2 "Buttons_Switches_ThroughHole:SW_PUSH_SMALL" H 4450 3150 50  0001 C CNN
+F 3 "" H 4450 3150 50  0000 C CNN
+	1    4450 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR05
+U 1 1 57111C71
+P 4150 3000
+F 0 "#PWR05" H 4150 2750 50  0001 C CNN
+F 1 "GND" H 4150 2850 50  0000 C CNN
+F 2 "" H 4150 3000 50  0000 C CNN
+F 3 "" H 4150 3000 50  0000 C CNN
+	1    4150 3000
+	0    1    1    0   
+$EndComp
+Text Label 4950 2850 0    60   ~ 0
+RESET
+Text Label 4950 3150 0    60   ~ 0
+BUTTON
+$Comp
+L SPEAKER SP1
+U 1 1 5711293B
+P 5650 4800
+F 0 "SP1" H 5550 5050 50  0000 C CNN
+F 1 "SPEAKER" H 5550 4550 50  0000 C CNN
+F 2 "Buzzers_Beepers:MagneticBuzzer_ProSignal_ABI-009-RC" H 5650 4800 50  0001 C CNN
+F 3 "" H 5650 4800 50  0000 C CNN
+	1    5650 4800
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR06
+U 1 1 571129C8
+P 5550 4450
+F 0 "#PWR06" H 5550 4200 50  0001 C CNN
+F 1 "GND" H 5550 4300 50  0000 C CNN
+F 2 "" H 5550 4450 50  0000 C CNN
+F 3 "" H 5550 4450 50  0000 C CNN
+	1    5550 4450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4850 3350 4850 4400
+Connection ~ 4850 4150
+Wire Wire Line
+	5750 3750 5900 3750
+Wire Wire Line
+	5550 4450 5550 4500
+Connection ~ 4800 3750
+Wire Wire Line
+	4800 3650 5900 3650
+Wire Wire Line
+	4900 4550 4900 3450
+Wire Wire Line
+	4850 5350 4750 5350
+Connection ~ 4850 4550
+Wire Wire Line
+	4850 3350 5900 3350
+Wire Wire Line
+	4900 3450 5900 3450
+Wire Wire Line
+	4750 3150 5850 3150
+Wire Wire Line
+	5850 3550 5900 3550
+Connection ~ 4000 4400
+Wire Wire Line
+	4850 4550 4850 5350
+Wire Wire Line
+	4000 4550 4900 4550
+Connection ~ 4000 4000
+Wire Wire Line
+	4000 4150 4850 4150
+Wire Wire Line
+	4800 4800 4750 4800
+Wire Wire Line
+	4800 3650 4800 4800
+Wire Wire Line
+	4000 3750 4800 3750
+Wire Wire Line
+	4000 3600 4000 3750
+Wire Wire Line
+	4000 5100 4000 5350
+Wire Wire Line
+	4750 5100 4000 5100
+Wire Wire Line
+	4750 4800 4750 5100
+Wire Wire Line
+	4000 4600 4000 4800
+Wire Wire Line
+	4750 4600 4000 4600
+Wire Wire Line
+	4000 4200 4000 4550
+Wire Wire Line
+	4750 4200 4000 4200
+Wire Wire Line
+	4750 4000 4750 4200
+Wire Wire Line
+	4000 3800 4000 4150
+Wire Wire Line
+	4750 3800 4000 3800
+Wire Wire Line
+	4750 3600 4750 3800
+Wire Wire Line
+	5800 3850 5900 3850
+Wire Wire Line
+	4750 2850 5950 2850
+Wire Wire Line
+	4400 3600 4450 3600
+Wire Wire Line
+	4400 4000 4450 4000
+Wire Wire Line
+	4450 4400 4400 4400
+Wire Wire Line
+	4400 4800 4450 4800
+Wire Wire Line
+	4450 5350 4400 5350
+Wire Wire Line
+	6700 4700 6700 4650
+Wire Wire Line
+	6700 5050 6700 5000
+Wire Wire Line
+	8600 3850 8650 3850
+Wire Wire Line
+	8650 3350 8600 3350
+$Comp
+L R R6
+U 1 1 57112FAC
+P 5750 4150
+F 0 "R6" V 5830 4150 50  0000 C CNN
+F 1 "R" V 5750 4150 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 5680 4150 50  0001 C CNN
+F 3 "" H 5750 4150 50  0000 C CNN
+	1    5750 4150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5750 3750 5750 4000
+Wire Wire Line
+	5750 4300 5750 4500
+$Comp
+L R R7
+U 1 1 5711330F
+P 6100 2850
+F 0 "R7" V 6180 2850 50  0000 C CNN
+F 1 "R" V 6100 2850 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 6030 2850 50  0001 C CNN
+F 3 "" H 6100 2850 50  0000 C CNN
+	1    6100 2850
+	0    -1   -1   0   
+$EndComp
+Connection ~ 5800 2850
+$Comp
+L VCC #PWR07
+U 1 1 571133A4
+P 6300 2850
+F 0 "#PWR07" H 6300 2700 50  0001 C CNN
+F 1 "VCC" H 6300 3000 50  0000 C CNN
+F 2 "" H 6300 2850 50  0000 C CNN
+F 3 "" H 6300 2850 50  0000 C CNN
+	1    6300 2850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6300 2850 6250 2850
+Wire Wire Line
+	4750 4400 4750 4600
+Wire Wire Line
+	4850 4400 4750 4400
+Wire Wire Line
+	4150 2850 4150 3150
+Connection ~ 4150 3000
+Wire Wire Line
+	5850 3150 5850 3550
+Wire Wire Line
+	5800 2850 5800 3850
+$EndSCHEMATC
