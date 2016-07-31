@@ -1,0 +1,13 @@
+Ajastin
+=======
+
+This is a simple timer for AtTiny85 (should work on 45 as well). Just some
+timer interrupts and charlieplexing. Nothing fancy here. Schematic is made
+using Kicad.
+
+The code and schematic is under MIT License and everything in this project is
+quite simple. So, if you find something useful, you may use it in your project
+without worrying. Just don't plain copy this and say it's yours. Note that the
+Makefile has some parts from links that are mentioned in its beginning.
+
+Feel free to contact me, if you have questions.
